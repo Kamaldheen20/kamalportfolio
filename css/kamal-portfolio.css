@@ -20,3 +20,32 @@
 .form-row textarea{resize:vertical;min-height:130px}
 .contact-form button{justify-self:start;cursor:pointer;font:inherit}
 @media(max-width:560px){.avatar-photo{width:148px;height:178px}.contact-form-wrap{padding:20px}}
+
+
+/* Professional white theme */
+:root{--bg:#f7f9fc;--panel:#ffffff;--panel2:#f1f5f9;--text:#172033;--muted:#5b6678;--blue:#2563eb;--cyan:#0f766e;--line:rgba(15,23,42,.12);--radius:22px}
+body{background:linear-gradient(180deg,#ffffff 0%,#f6f8fb 100%);color:var(--text)}
+.topbar{background:rgba(255,255,255,.92);border-bottom:1px solid var(--line)}
+.brand span{color:var(--blue)}
+nav ul{color:#536174}
+.eyebrow{color:#0f766e;border-color:rgba(15,118,110,.2);background:#ecfdf5}
+.eyebrow:before{background:#0f766e;box-shadow:0 0 10px rgba(15,118,110,.2)}
+h1 .gradient{background:linear-gradient(100deg,#1d4ed8,#0f766e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-card,.surface,.contact-form-wrap{background:#fff;border-color:#e2e8f0;box-shadow:0 16px 45px rgba(15,23,42,.07)}
+.hero-card:before{background:rgba(37,99,235,.08)}
+.stat{background:#f8fafc;border-color:#e2e8f0}
+.stat strong{color:#0f766e}
+.skill{background:#f8fafc;color:#334155;border-color:#e2e8f0}
+.project{background:#fff;border-color:#e2e8f0;box-shadow:0 8px 24px rgba(15,23,42,.035)}
+.project:hover{border-color:rgba(37,99,235,.4)}
+.project-top{background:radial-gradient(circle at 80% 20%,rgba(15,118,110,.08),transparent 30%),linear-gradient(135deg,#eff6ff,#f8fafc)}
+.project-top span,.kicker,.timeline-label{color:#0f766e}
+.tag{background:#eff6ff;color:#1d4ed8;border-color:#dbeafe}
+.contact-panel{background:linear-gradient(135deg,#fff,#f1f7ff);border-color:#e2e8f0}
+.footer{border-color:#e2e8f0;color:#64748b}
+.btn.primary{background:linear-gradient(110deg,#1d4ed8,#2563eb);color:#fff}
+.btn.secondary{background:#fff;border-color:#cbd5e1;color:#1e293b}
+.form-row input,.form-row textarea{background:#fff;color:#172033;border-color:#cbd5e1}
+.form-row input::placeholder,.form-row textarea::placeholder{color:#94a3b8}
+.form-row input:focus,.form-row textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.avatar-photo{border-color:#dbeafe;box-shadow:0 14px 36px rgba(15,23,42,.12)}
