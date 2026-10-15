@@ -7,3 +7,16 @@
 /* Visible, responsive portrait in the hero profile card */
 .avatar-photo{display:block;width:136px;height:164px;max-width:100%;object-fit:cover;object-position:center 20%;border-radius:20px;border:2px solid rgba(103,232,249,.28);box-shadow:0 12px 32px rgba(0,0,0,.28);margin:0 0 20px;position:relative;z-index:1}
 @media(max-width:560px){.avatar-photo{width:124px;height:150px}}
+
+/* Larger profile photo and accessible contact form */
+.avatar-photo{display:block;width:166px;height:198px;max-width:100%;object-fit:cover;object-position:center 20%;border-radius:20px;border:2px solid rgba(103,232,249,.3);box-shadow:0 14px 36px rgba(0,0,0,.32);margin:0 0 20px;position:relative;z-index:1}
+.contact-form-wrap{margin-top:28px;padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(18,28,45,.9),rgba(12,19,32,.9))}
+.contact-form-wrap h3{margin:0 0 6px;font-size:1.3rem}
+.contact-form{display:grid;gap:17px;margin-top:20px;max-width:760px}
+.form-row{display:grid;gap:7px}
+.form-row label{font-weight:700;font-size:.9rem;color:var(--text)}
+.form-row input,.form-row textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:11px;background:rgba(4,9,18,.75);color:var(--text);font:inherit;outline:none}
+.form-row input:focus,.form-row textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(85,167,255,.12)}
+.form-row textarea{resize:vertical;min-height:130px}
+.contact-form button{justify-self:start;cursor:pointer;font:inherit}
+@media(max-width:560px){.avatar-photo{width:148px;height:178px}.contact-form-wrap{padding:20px}}
