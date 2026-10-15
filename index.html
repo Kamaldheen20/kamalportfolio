@@ -128,14 +128,34 @@
       <div class="contact-panel">
         <div><div class="kicker">Let’s connect</div><h2 style="margin:6px 0 0;font-size:clamp(1.8rem,4vw,2.5rem)">Have an idea or opportunity?</h2><p>I’m interested in connecting with developers, collaborators, and teams working on useful software and AI-powered products.</p></div>
         <div class="contact-links">
-          <a class="btn primary" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="btn secondary" href="https://github.com/Kamaldheen20/kamal-portfolio" target="_blank" rel="noopener noreferrer">Portfolio repository ↗</a>
+          <a class="btn primary" href="mailto:dheenkamal681@gmail.com">Email me ↗</a>
+          <a class="btn secondary" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </div>
       </div>
-      <p class="small-note" style="margin-top:14px">Contact email and LinkedIn URL can be added once you provide the exact details.</p>
+      <p class="small-note" style="margin-top:14px">Email: <a href="mailto:dheenkamal681@gmail.com">dheenkamal681@gmail.com</a></p>
+      <div class="contact-form-wrap">
+        <h3>Send me a message</h3>
+        <p class="small-note">Complete this form and your default email app will open with your message ready to send.</p>
+        <form id="contact-form" class="contact-form">
+          <div class="form-row"><label for="contact-name">Your name</label><input id="contact-name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required></div>
+          <div class="form-row"><label for="contact-email">Your email</label><input id="contact-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></div>
+          <div class="form-row"><label for="contact-subject">Subject</label><input id="contact-subject" name="subject" type="text" placeholder="What would you like to discuss?" required></div>
+          <div class="form-row"><label for="contact-message">Message</label><textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea></div>
+          <button class="btn primary" type="submit">Prepare email <span>↗</span></button>
+          <p class="small-note">This form opens your email app; it does not send or store messages on the website.</p>
+        </form>
+      </div>
     </div>
   </section>
 </main>
+<script>
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const body = "Name: " + form.elements.name.value.trim() + "\\nReply email: " + form.elements.email.value.trim() + "\\n\\n" + form.elements.message.value.trim();
+  window.location.href = "mailto:dheenkamal681@gmail.com?subject=" + encodeURIComponent(form.elements.subject.value.trim()) + "&body=" + encodeURIComponent(body);
+});
+</script>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year">2026</span> Kamal. Built with purpose.</span><span>Designed for AI, software, and product development.</span></div></footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
