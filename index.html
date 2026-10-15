@@ -78,32 +78,44 @@
         <div><div class="kicker">Selected work</div><h2>Projects I’m building</h2></div>
         <p>A selection of application and AI projects across finance, forecasting, cybersecurity, visualization, and mobile development.</p>
       </div>
+      <div class="project-tools" role="search" aria-label="Find projects">
+        <label class="sr-only" for="project-search">Search projects or technologies</label>
+        <input id="project-search" type="search" placeholder="Search projects, Python, Flutter, AI..." autocomplete="off">
+        <div class="project-filters" role="group" aria-label="Project categories">
+          <button type="button" class="filter-chip active" data-filter="all" aria-pressed="true">All projects</button>
+          <button type="button" class="filter-chip" data-filter="web" aria-pressed="false">Web</button>
+          <button type="button" class="filter-chip" data-filter="mobile" aria-pressed="false">Mobile</button>
+          <button type="button" class="filter-chip" data-filter="ai" aria-pressed="false">AI / ML</button>
+          <button type="button" class="filter-chip" data-filter="security" aria-pressed="false">Security</button>
+        </div>
+        <p id="project-count" class="small-note" role="status" aria-live="polite">Showing 7 projects</p>
+      </div>
       <div class="projects">
-        <article class="project">
+        <article class="project" data-category="web">
           <div class="project-top"><span>01 / Web application</span></div>
           <div class="project-body"><h3>Finance Collection Management System</h3><p>A collection workflow for customer registration, daily payment tracking, monthly collection sheets, customer ledgers, and exportable reports.</p><div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLAlchemy</span><span class="tag">PostgreSQL</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
-        <article class="project">
+        <article class="project" data-category="mobile">
           <div class="project-top"><span>02 / Mobile application</span></div>
           <div class="project-body"><h3>Finance Collection Mobile</h3><p>A Flutter mobile companion for finance collection workflows, developed with Android testing and API integration.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Android</span><span class="tag">REST API</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
-        <article class="project">
+        <article class="project" data-category="ai">
           <div class="project-top"><span>03 / Machine learning</span></div>
           <div class="project-body"><h3>Cloud Data Center Workload Forecasting</h3><p>A forecasting project exploring machine-learning models to estimate cloud workload patterns and support capacity planning.</p><div class="tags"><span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">XGBoost</span><span class="tag">Random Forest</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
-        <article class="project">
+        <article class="project" data-category="security">
           <div class="project-top"><span>04 / Cybersecurity</span></div>
           <div class="project-body"><h3>Vehicle CAN Intrusion Detection</h3><p>A machine-learning concept for identifying unusual patterns in vehicle CAN traffic, including anomaly detection with Isolation Forest.</p><div class="tags"><span class="tag">Python</span><span class="tag">Cybersecurity</span><span class="tag">Isolation Forest</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
-        <article class="project">
+        <article class="project" data-category="ai">
           <div class="project-top"><span>05 / AI productivity</span></div>
           <div class="project-body"><h3>NL2Viz Pro</h3><p>A natural-language-to-visualization concept designed to make data exploration easier by translating plain-language requests into charts.</p><div class="tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Data Visualization</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
-        <article class="project">
+        <article class="project" data-category="ai">
           <div class="project-top"><span>06 / AI concept</span></div>
           <div class="project-body"><h3>AI Trading Intelligence</h3><p>An AI-focused project concept exploring market data analysis and intelligence features for decision support.</p><div class="tags"><span class="tag">Python</span><span class="tag">AI/ML</span><span class="tag">Data Analysis</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
-        <article class="project">
+        <article class="project" data-category="mobile">
           <div class="project-top"><span>07 / Career platform</span></div>
           <div class="project-body"><h3>Student Job & Internship Finder</h3><p>A student-focused mobile app concept for discovering job and internship opportunities through a clean, accessible interface.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">UI/UX</span><span class="tag">Student Tools</span></div><a class="project-link" href="https://github.com/Kamaldheen20" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a></div>
         </article>
@@ -133,6 +145,7 @@
         </div>
       </div>
       <p class="small-note" style="margin-top:14px">Email: <a href="mailto:dheenkamal681@gmail.com">dheenkamal681@gmail.com</a></p>
+      <button class="copy-email" id="copy-email" type="button">Copy email address</button><span id="copy-status" class="small-note" role="status" aria-live="polite"></span>
       <div class="contact-form-wrap">
         <h3>Send me a message</h3>
         <p class="small-note">Complete this form and your default email app will open with your message ready to send.</p>
@@ -148,6 +161,37 @@
     </div>
   </section>
 </main>
+<script>
+(function(){
+ const search=document.getElementById('project-search');
+ const cards=Array.from(document.querySelectorAll('.projects .project'));
+ const chips=Array.from(document.querySelectorAll('.filter-chip'));
+ const count=document.getElementById('project-count');
+ let filter='all';
+ function refresh(){
+  const term=search.value.trim().toLowerCase();
+  let visible=0;
+  cards.forEach(card=>{
+   const matches=(filter==='all'||card.dataset.category===filter)&&card.textContent.toLowerCase().includes(term);
+   card.hidden=!matches;if(matches)visible++;
+  });
+  count.textContent='Showing '+visible+' of '+cards.length+' projects';
+ }
+ search.addEventListener('input',refresh);
+ chips.forEach(chip=>chip.addEventListener('click',()=>{
+  filter=chip.dataset.filter;
+  chips.forEach(item=>{const active=item===chip;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));});
+  refresh();
+ }));
+ refresh();
+ const copy=document.getElementById('copy-email');
+ copy.addEventListener('click',async()=>{
+  const email='dheenkamal681@gmail.com';
+  try{await navigator.clipboard.writeText(email);document.getElementById('copy-status').textContent=' Copied!';}
+  catch{document.getElementById('copy-status').textContent=' Select the email address above to copy it.';}
+ });
+})();
+</script>
 <script>
 document.getElementById("contact-form").addEventListener("submit", function (event) {
   event.preventDefault();
